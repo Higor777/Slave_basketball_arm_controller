@@ -12,7 +12,7 @@
 volatile Queue rx_queue;
 static int noselect;			//ÃüÁîÄ£Ê½Ñ¡Ôñ±ê¼Ç
 float x,y,w,distance1,distance2,distance3,distance4;								//×ø±êºÍ´«¸ÐÆ÷¾àÀë
-extern float destpid_angle4;            //²½½øµç»úËÙ¶
+extern float destpid_angle4;            //²½½øµç»úËÙ
 volatile int hehe;
 
 uint8_t radBufferRS485[99];  		 	//¼ÇÂ¼×ª½Ç
@@ -25,10 +25,10 @@ void handle_data(uint8_t buf[], int D,int len)
 		            	  {
                       if(buf[1]==1) {noselect = 0x04 ;break;}       //get_ball
 			           else if(buf[1]==2) {noselect = 0x05 ;break;}       //get_hold_ball
-							   else if(buf[1]==3) {noselect = 0x06 ;break;}       //getfromhold
+							   else if(buf[1]==3) {noselect = 0x06 ;break;}       //get_from_hold
 						     else if(buf[1]==4) {noselect = 0x07 ;break;}       //high_down
 							   else if(buf[1]==5) {noselect = 0x08 ;break;}       //high_lift
-//							else if(buf[0]==6) {noselect = 0x09 ;break;}       //¼ñÇò»ú¹¹·ÅÏÂ  mid
+						     else if(buf[0]==6) {noselect = 0x09 ;break;}       //down_from_hold´Ó³ÖÇò´¦ÂäÏÂ
 			              }
 			case 3:      if(buf[0]==1) {noselect = 0x0a ;break;}	      //Í¶Çò   ´Ë´¦CASEÒªºÍÐ­ÒéÅäºÏ
 			
@@ -58,14 +58,14 @@ void send(void)
 	char byte[4];		   					
 	uint16_t checksumsend1=0x16;				 //Ð£ÑéÎ»³õÊ¼Öµ£¨·µ»Ø´«¸ÐÆ÷¾àÀë1 | ·µ»ØÎ»ÖÃ2£©
 	RS485_TX_MODE   //TXÄ£Ê½
-	if(USART_GetFlagStatus(USART2, USART_FLAG_TC)!=RESET)
+	if(USART_GetFlagStatus(USART1, USART_FLAG_TC)!=RESET)//·¢ËÍÍê³É±êÖ¾Î»//
 	{	
- if(noselect==0x04) 							//µÃÇò		 
+      if(noselect==0x04) 							//µÃÇò		 
 		{
 		  get_ball();
-      distance1++;			
+          distance1++;			
 						
-			noselect=0;
+		 noselect=0;
 	 	}
 		
  if(noselect==0x05) 							//µÃÇò²¢±£³Ö³ÖÇò×´Ì¬
@@ -83,7 +83,7 @@ void send(void)
 	 	}
 	if(noselect==0x06) 							//´Ó³ÖÇòÎ»ÖÃµÃÇò			 
 		{
-		  getfromhold();				
+		  get_from_hold();				
 //			USART1_SendChar(0xff);			
 //			USART1_SendChar(0xff);			
 //			USART1_SendChar(0x02);										
@@ -108,7 +108,7 @@ void send(void)
 		  high_down();
 			noselect=0;
 	 	}
-		if(noselect==0x08) 							//mid_lift	 
+		if(noselect==0x08) 							//high_lift	 
 		{				
 			USART1_SendChar(0xff);			
 			USART1_SendChar(0xff);			
@@ -121,28 +121,20 @@ void send(void)
 			high_lift();			
 			noselect=0;
 	 	}
-//		if(noselect==0x09) 							//mid_down		 
-//		{
-//		 // mid_down();				
-//			USART1_SendChar(0xff);			
-//			USART1_SendChar(0xff);			
-//			USART1_SendChar(0x02);										
-//			USART1_SendChar(0x00);	
-//			USART1_SendChar(0x02);
-//			USART1_SendChar(0x04);
-//			USART1_SendChar(0x00);	
-//			USART1_SendChar(0x05);
-//			
-//			USART1_SendChar(0xff);			
-//			USART1_SendChar(0xff);			
-//			USART1_SendChar(0x02);										
-//			USART1_SendChar(0x00);	
-//			USART1_SendChar(0x02);
-//			USART1_SendChar(0x04);
-//			USART1_SendChar(0x00);	
-//			USART1_SendChar(0x05);		
-//			noselect=0;
-//	 	}
+		if(noselect==0x09) 							//down_from_hold
+		{
+			USART1_SendChar(0xff);			
+			USART1_SendChar(0xff);			
+			USART1_SendChar(0x02);										
+			USART1_SendChar(0x00);	
+			USART1_SendChar(0x02);
+			USART1_SendChar(0x01);
+			USART1_SendChar(0x00);	
+			USART1_SendChar(0x05);     
+			down_from_hold();
+			noselect=0;
+		}			
+
  if(noselect==0x0a) 							//Í¶Çò			 
 		{
 		  shot();				
@@ -229,9 +221,6 @@ int main()
 		RECFF1,RECFF2,SENDID,RECID,RECLEN1,RECLEN2,RECSEL,RECCHECK
 	} rs485Recstate = RECFF1;
    delayinit(72);	   
-	//LED1(0);
-	//Init_System_Timer();   //ÏµÍ³Ê±ÖÓ³õÊ¼»¯  ÕâÀïÒÔtim5×÷ÎªÏµÍ³Ê±ÖÓ
-  //USART2_485init();	  //484(usart2)³õÊ¼»¯
 	usart1_config(115200);  //usart1³õÊ¼»¯
 	BSPINIT();
 	RS485_RX_MODE			
@@ -246,7 +235,7 @@ int main()
 				
 				hehe=0;
 				adcx=Get_Adc_Average(ADC_Channel_1,10);
-        distance=(m/(adcx-b))-k;
+                distance=(m/(adcx-b))-k;
 				if(distance<=10)                           //±¨¾¯£¬¾àÀëÇòÐ¡ÓÚ10cm
 				{
 				  // USART1_SendChar(rx);
@@ -274,30 +263,31 @@ int main()
 					checksum=0;		
 					cur = 0;								//Ð£ÑéÎ»ÇåÁã
  
-}
+                }
 	
 				break;
 	
 			case RECFF2:
 				if (data == 0xff)
 					rs485Recstate = RECID;
-								else
+			    else
 					rs485Recstate = RECFF1;
 		
 				break;
 	
 	
 			case RECID:				 					
-			     if(data==0x01)	                       //Éè±¸±àºÅ0x01µ×ÅÌÓëº½¼£
-			        {
-							device=1;
-					    checksum += data;
-					    rs485Recstate = RECLEN1;
-								
-				      }
-			else if(data==0x02)                       //Éè±¸±àºÅ0x02¼ñÇò 
-							{
-							device=2;
+//		     if(data==0x01)	                       //Éè±¸±àºÅ0x01µ×ÅÌÓëº½¼£
+//		        {
+//				    device=1;
+//					    checksum += data;
+//					    rs485Recstate = RECLEN1;
+//							
+//                   }
+		
+			 if(data==0x02)                       //Éè±¸±àºÅ0x02¼ñÇò 
+					{
+						device=2;
 					    checksum += data;
 					    rs485Recstate = RECLEN1;
 				      }
@@ -308,13 +298,13 @@ int main()
 					    rs485Recstate = RECLEN1;
 				      }
 			else if(data==0x04) 			              //Éè±¸±àºÅ0x04 ²â¾à
-				      {
-				      device=4;
+				    {
+				        device=4;
 					    checksum += data;
 					    rs485Recstate = RECLEN1;
-				}
-				else
-					rs485Recstate = RECFF1;	  
+				   }
+			else
+				 rs485Recstate = RECFF1;	  
 				break;
 	
 			case RECLEN1:				 				
@@ -341,7 +331,7 @@ int main()
 				if(data == checksum)
 				{				
 					handle_data(buffer,device, data_len);
-  				send();				
+  				    send();				
 					checksum=0;	
 					rs485Recstate = RECFF1;	 
 				}
