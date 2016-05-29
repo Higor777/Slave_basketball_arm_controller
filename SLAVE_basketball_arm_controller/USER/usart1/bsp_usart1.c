@@ -75,9 +75,10 @@ void USART1_IRQHandler(void)
 	{ 
 
 		if(queue_full(rx_queue))
-		{		   		   
-			USART1_SendChar(0xff);
-			USART1_SendChar(0xff);
+		{		   	
+     xx=0;			
+			//USART1_SendChar(0xff);
+			//USART1_SendChar(0xff);
 	    //USART_ITConfig(USART2, USART_IT_RXNE, DISABLE);	//关闭串口2	 	
 		}
 		else
@@ -86,64 +87,12 @@ void USART1_IRQHandler(void)
 		  c = USART_ReceiveData(USART1);
 			queue_put(&rx_queue, c);
 			
-			//USART1_SendChar(c);
 	  }
 				  
 		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
 	} 			 
 	
-	//USART1_SendChar('d');
-	//LED1 = 0;
 	}
-
-//void usart1_config(u32 baudrate)
-//{
-//	GPIO_InitTypeDef GPIO_InitStructure;
-//	USART_InitTypeDef USART_InitStructure;
-//	
-//	/* config USART1 clock */
-//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);
-//	
-//	/* USART1 GPIO config */
-//	/* Configure USART1 Tx (PA.09) as alternate function push-pull */
-//	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
-//	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-//	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-//	GPIO_Init(GPIOA, &GPIO_InitStructure);    
-//	/* Configure USART1 Rx (PA.10) as input floating */
-//	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-//	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-//	GPIO_Init(GPIOA, &GPIO_InitStructure);
-//	
-//	/* USART1 mode config */
-//	USART_InitStructure.USART_BaudRate = baudrate;
-//	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
-//	USART_InitStructure.USART_StopBits = USART_StopBits_1;
-//	USART_InitStructure.USART_Parity = USART_Parity_No ;
-//	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-//	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-//	USART_Init(USART1, &USART_InitStructure);
-//	
-//	/* 使能串口1接收中断 */
-//	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
-//	
-//	USART_Cmd(USART1, ENABLE);
-//}
-
-/// 配置USART1接收中断
-//void NVIC_Configuration(void)
-//{
-//	NVIC_InitTypeDef NVIC_InitStructure; 
-//	/* Configure the NVIC Preemption Priority Bits */  
-//	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-//	
-//	/* Enable the USARTy Interrupt */
-//	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;	 
-//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//	NVIC_Init(&NVIC_InitStructure);
-//}
 
 
 void USART1_SendChar(u8 b)

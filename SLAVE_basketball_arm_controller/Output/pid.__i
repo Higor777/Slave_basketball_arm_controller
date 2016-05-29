@@ -1,0 +1,5 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\FWlib\src -I..\USER -I..\USEFile -I..\USEFile\BSP -I..\USEFile\Communication -I..\USEFile\DCMOTOR -I..\USEFile\SteeringEngine 
+-I D:\programming\ARM\RV31\INC 
+-I D:\programming\ARM\CMSIS\Include 
+-I D:\programming\ARM\Inc\ST\STM32F10x 
+-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Output\pid.o" --omf_browse "..\Output\pid.crf" --depend "..\Output\pid.d" "..\USEFile\DCMOTOR\pid.c"
