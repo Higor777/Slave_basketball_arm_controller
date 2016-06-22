@@ -29,7 +29,7 @@ void get_ball()              //得球
 {
  hold=0;	
  direction(1);                //上升
- step=7600;
+ step=8000;
  Stepper_motor();
  while(flag==0);
  flag=0;  	//标志位请零
@@ -53,16 +53,17 @@ void get_ball()              //得球
 	
  TIM8_PWM_Init(999,10);             //下降
  direction(-1);
- step=7550;                     //回来的时候貌似步数要小一些，防止架子打底盘，要经验算
+ step=7000;                    		 //回来的时候步数小一些，再释放电机
  Stepper_motor();
  while(flag==0); 
  flag=0;
+ ln1(0);													//释放电机
 }
 
 void get_hold_ball()              //得球并持球状态
 {
  direction(1);              //上升
- step=3600;
+ step=4000;
  TIM8_PWM_Init(999,10);
  Stepper_motor();
  while(flag==0);  
@@ -78,24 +79,25 @@ void down_from_hold()
 {
  TIM_Cmd(TIM3, DISABLE);
  TIM_Cmd(TIM8, DISABLE);
- TIM8_PWM_Init(999,10);              //下降 
+ TIM8_PWM_Init(999,10);              //从持球位置下降
  flag=0;                             //标志位清零
  hold=0;                             //解除持球
  direction(-1); 
- step=3580;                          //step值需要测试
+ step=3000;                          //step值需要测试
  Stepper_motor();
  while(flag==0);  
  flag=0;
+ ln1(0);														//释放电机
 }
-void get_from_hold()              //从持球位置得球
-{
+void get_from_hold()              	//从持球位置得球并下降
+{	
  TIM_Cmd(TIM3, DISABLE);
  TIM_Cmd(TIM8, DISABLE);
  TIM8_PWM_Init(999,10);              //上升 
  flag=0;                             //标志位清零
  hold=0;                             //解除持球
  direction(1); 
- step=4000;                          //step值需要测试
+ step=4000;                          
  Stepper_motor();
  while(flag==0);  
  flag=0;
@@ -120,28 +122,30 @@ void get_from_hold()              //从持球位置得球
 			
  TIM8_PWM_Init(999,10);
  direction(-1);                    //放下铲球架
- step=7550;                        
+ step=7000;                        
  Stepper_motor();
  while(flag==0); 
  flag=0;
+ ln1(0);													//释放电机
 }
 
-void high_lift()              //抬球
+void high_lift()              		//上升到最高处
 {
  direction(1); 
- step=7600;
+ step=11000;
  Stepper_motor();
  while(flag==0);  
  flag=0;
 }
 
-void high_down()              //放下捡球机构
+void high_down()             	 //从最高处落下
 {
  direction(-1); 
- step=7550;
+ step=10000;
  Stepper_motor();
  while(flag==0);  
  flag=0;
+ ln1(0);											//释放电机
 }
 
 

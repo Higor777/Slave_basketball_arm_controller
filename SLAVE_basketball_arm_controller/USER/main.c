@@ -28,7 +28,7 @@ void handle_data(uint8_t buf[], int D,int len)
 							   else if(buf[1]==3) {noselect = 0x06 ;break;}       //get_from_hold
 						     else if(buf[1]==4) {noselect = 0x07 ;break;}       //high_down
 							   else if(buf[1]==5) {noselect = 0x08 ;break;}       //high_lift
-						     else if(buf[0]==6) {noselect = 0x09 ;break;}       //down_from_hold从持球处落下
+						     else if(buf[1]==6) {noselect = 0x09 ;break;}       //down_from_hold从持球处落下
 			              }
 			case 3:      if(buf[0]==1) {noselect = 0x0a ;break;}	      //投球   此处CASE要和协议配合
 			
