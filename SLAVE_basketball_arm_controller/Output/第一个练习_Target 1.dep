@@ -1,5 +1,5 @@
 Dependencies for Project '第一个练习', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5736BEC2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\FWlib\src -I..\USER -I..\USEFile -I..\USEFile\BSP -I..\USEFile\Communication -I..\USEFile\DCMOTOR -I..\USEFile\SteeringEngine -I.\usart1-I C:\Users\home\Desktop\杂\篮球电子代码\篮球步进电机232无FPGA加红外\篮球步进电机232无FPGA加红外\USER\RTE-I F:\MDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I F:\MDK5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
+F (.\main.c)(0x576A462C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\FWlib\src -I..\USER -I..\USEFile -I..\USEFile\BSP -I..\USEFile\Communication -I..\USEFile\DCMOTOR -I..\USEFile\SteeringEngine -I.\usart1-I C:\Users\home\Desktop\杂\篮球电子代码\篮球步进电机232无FPGA加红外\篮球步进电机232无FPGA加红外\USER\RTE-I F:\MDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I F:\MDK5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\main.o --omf_browse ..\output\main.crf --depend ..\output\main.d)
 I (..\CMSIS\stm32f10x.h)(0x527FA6F6)
 I (..\CMSIS\core_cm3.h)(0x4D523B58)
 I (F:\MDK5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -153,7 +153,7 @@ I (..\FWlib\inc\stm32f10x_usart.h)(0x4D783BB4)
 I (..\FWlib\inc\misc.h)(0x4D783BB4)
 I (..\USEFile\BSP\bsp.h)(0x55ACC0DC)
 I (..\USER\delay.h)(0x535DF80A)
-F (..\USEFile\DCMOTOR\motorcontrol.c)(0x5736BD43)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\FWlib\src -I..\USER -I..\USEFile -I..\USEFile\BSP -I..\USEFile\Communication -I..\USEFile\DCMOTOR -I..\USEFile\SteeringEngine -I.\usart1-I C:\Users\home\Desktop\杂\篮球电子代码\篮球步进电机232无FPGA加红外\篮球步进电机232无FPGA加红外\USER\RTE-I F:\MDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I F:\MDK5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\motorcontrol.o --omf_browse ..\output\motorcontrol.crf --depend ..\output\motorcontrol.d)
+F (..\USEFile\DCMOTOR\motorcontrol.c)(0x576A5058)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\FWlib\src -I..\USER -I..\USEFile -I..\USEFile\BSP -I..\USEFile\Communication -I..\USEFile\DCMOTOR -I..\USEFile\SteeringEngine -I.\usart1-I C:\Users\home\Desktop\杂\篮球电子代码\篮球步进电机232无FPGA加红外\篮球步进电机232无FPGA加红外\USER\RTE-I F:\MDK5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-I F:\MDK5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\motorcontrol.o --omf_browse ..\output\motorcontrol.crf --depend ..\output\motorcontrol.d)
 I (..\CMSIS\stm32f10x.h)(0x527FA6F6)
 I (..\CMSIS\core_cm3.h)(0x4D523B58)
 I (F:\MDK5\ARM\ARMCC\include\stdint.h)(0x5475F300)

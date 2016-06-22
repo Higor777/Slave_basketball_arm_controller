@@ -327,24 +327,24 @@ Image Symbol Table
     .text                                    0x08002934   Section        0  stm32f10x_adc.o(.text)
     .text                                    0x08002d84   Section        0  bsp.o(.text)
     .text                                    0x080031b0   Section        0  motorcontrol.o(.text)
-    .text                                    0x08003490   Section        0  queue.o(.text)
-    .text                                    0x08003510   Section        0  bsp_usart1.o(.text)
-    .text                                    0x08003694   Section      100  rt_memcpy_w.o(.text)
-    .text                                    0x080036f8   Section       78  rt_memclr_w.o(.text)
-    .text                                    0x08003746   Section        0  heapauxi.o(.text)
-    .text                                    0x0800374c   Section       74  sys_stackheap_outer.o(.text)
-    .text                                    0x08003796   Section        0  exit.o(.text)
-    .text                                    0x080037a4   Section        8  libspace.o(.text)
-    .text                                    0x080037ac   Section        0  sys_exit.o(.text)
-    .text                                    0x080037b8   Section        2  use_no_semi.o(.text)
-    .text                                    0x080037ba   Section        0  indicate_semi.o(.text)
-    x$fpl$fadd                               0x080037bc   Section      196  faddsub_clz.o(x$fpl$fadd)
-    _fadd1                                   0x080037cb   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    x$fpl$fnaninf                            0x08003880   Section      140  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fretinf                            0x0800390c   Section       10  fretinf.o(x$fpl$fretinf)
-    x$fpl$fsub                               0x08003918   Section      234  faddsub_clz.o(x$fpl$fsub)
-    _fsub1                                   0x08003927   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    x$fpl$usenofp                            0x08003a02   Section        0  usenofp.o(x$fpl$usenofp)
+    .text                                    0x080034b8   Section        0  queue.o(.text)
+    .text                                    0x08003538   Section        0  bsp_usart1.o(.text)
+    .text                                    0x080036bc   Section      100  rt_memcpy_w.o(.text)
+    .text                                    0x08003720   Section       78  rt_memclr_w.o(.text)
+    .text                                    0x0800376e   Section        0  heapauxi.o(.text)
+    .text                                    0x08003774   Section       74  sys_stackheap_outer.o(.text)
+    .text                                    0x080037be   Section        0  exit.o(.text)
+    .text                                    0x080037cc   Section        8  libspace.o(.text)
+    .text                                    0x080037d4   Section        0  sys_exit.o(.text)
+    .text                                    0x080037e0   Section        2  use_no_semi.o(.text)
+    .text                                    0x080037e2   Section        0  indicate_semi.o(.text)
+    x$fpl$fadd                               0x080037e4   Section      196  faddsub_clz.o(x$fpl$fadd)
+    _fadd1                                   0x080037f3   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    x$fpl$fnaninf                            0x080038a8   Section      140  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fretinf                            0x08003934   Section       10  fretinf.o(x$fpl$fretinf)
+    x$fpl$fsub                               0x08003940   Section      234  faddsub_clz.o(x$fpl$fsub)
+    _fsub1                                   0x0800394f   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    x$fpl$usenofp                            0x08003a2a   Section        0  usenofp.o(x$fpl$usenofp)
     .data                                    0x20000000   Section       38  main.o(.data)
     noselect                                 0x20000000   Data           4  main.o(.data)
     checksum                                 0x20000024   Data           2  main.o(.data)
@@ -751,52 +751,52 @@ Image Symbol Table
     Get_Adc_Average                          0x0800314d   Thumb Code    50  bsp.o(.text)
     direction                                0x080031b1   Thumb Code    54  motorcontrol.o(.text)
     Stepper_motor                            0x080031e7   Thumb Code    20  motorcontrol.o(.text)
-    get_ball                                 0x080031fb   Thumb Code   184  motorcontrol.o(.text)
-    get_hold_ball                            0x080032b3   Thumb Code    76  motorcontrol.o(.text)
-    down_from_hold                           0x080032ff   Thumb Code    74  motorcontrol.o(.text)
-    get_from_hold                            0x08003349   Thumb Code   222  motorcontrol.o(.text)
-    high_lift                                0x08003427   Thumb Code    38  motorcontrol.o(.text)
-    high_down                                0x0800344d   Thumb Code    40  motorcontrol.o(.text)
-    queue_init                               0x08003491   Thumb Code    14  queue.o(.text)
-    queue_get                                0x0800349f   Thumb Code    32  queue.o(.text)
-    queue_put                                0x080034bf   Thumb Code    30  queue.o(.text)
-    queue_empty                              0x080034dd   Thumb Code    20  queue.o(.text)
-    queue_full                               0x080034f1   Thumb Code    32  queue.o(.text)
-    usart1_config                            0x08003511   Thumb Code   160  bsp_usart1.o(.text)
-    USART1_IRQHandler                        0x080035b1   Thumb Code    84  bsp_usart1.o(.text)
-    USART1_SendChar                          0x08003605   Thumb Code    28  bsp_usart1.o(.text)
-    Change_Baudrate                          0x08003621   Thumb Code    40  bsp_usart1.o(.text)
-    fputc                                    0x08003649   Thumb Code    32  bsp_usart1.o(.text)
-    fgetc                                    0x08003669   Thumb Code    26  bsp_usart1.o(.text)
-    __aeabi_memcpy4                          0x08003695   Thumb Code     0  rt_memcpy_w.o(.text)
-    __aeabi_memcpy8                          0x08003695   Thumb Code     0  rt_memcpy_w.o(.text)
-    __rt_memcpy_w                            0x08003695   Thumb Code   100  rt_memcpy_w.o(.text)
-    _memcpy_lastbytes_aligned                0x080036dd   Thumb Code     0  rt_memcpy_w.o(.text)
-    __aeabi_memclr4                          0x080036f9   Thumb Code     0  rt_memclr_w.o(.text)
-    __aeabi_memclr8                          0x080036f9   Thumb Code     0  rt_memclr_w.o(.text)
-    __rt_memclr_w                            0x080036f9   Thumb Code    78  rt_memclr_w.o(.text)
-    _memset_w                                0x080036fd   Thumb Code     0  rt_memclr_w.o(.text)
-    __use_two_region_memory                  0x08003747   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_escrow$2region                 0x08003749   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_expand$2region                 0x0800374b   Thumb Code     2  heapauxi.o(.text)
-    __user_setup_stackheap                   0x0800374d   Thumb Code    74  sys_stackheap_outer.o(.text)
-    exit                                     0x08003797   Thumb Code    12  exit.o(.text)
-    __user_libspace                          0x080037a5   Thumb Code     8  libspace.o(.text)
-    __user_perproc_libspace                  0x080037a5   Thumb Code     0  libspace.o(.text)
-    __user_perthread_libspace                0x080037a5   Thumb Code     0  libspace.o(.text)
-    _sys_exit                                0x080037ad   Thumb Code     8  sys_exit.o(.text)
-    __I$use$semihosting                      0x080037b9   Thumb Code     0  use_no_semi.o(.text)
-    __use_no_semihosting_swi                 0x080037b9   Thumb Code     2  use_no_semi.o(.text)
-    __semihosting_library_function           0x080037bb   Thumb Code     0  indicate_semi.o(.text)
-    __aeabi_fadd                             0x080037bd   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    _fadd                                    0x080037bd   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
-    __fpl_fnaninf                            0x08003881   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    __fpl_fretinf                            0x0800390d   Thumb Code    10  fretinf.o(x$fpl$fretinf)
-    __aeabi_fsub                             0x08003919   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    _fsub                                    0x08003919   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
-    __I$use$fp                               0x08003a02   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x08003a04   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08003a24   Number         0  anon$$obj.o(Region$$Table)
+    get_ball                                 0x080031fb   Thumb Code   194  motorcontrol.o(.text)
+    get_hold_ball                            0x080032bd   Thumb Code    76  motorcontrol.o(.text)
+    down_from_hold                           0x08003309   Thumb Code    84  motorcontrol.o(.text)
+    get_from_hold                            0x0800335d   Thumb Code   232  motorcontrol.o(.text)
+    high_lift                                0x08003445   Thumb Code    38  motorcontrol.o(.text)
+    high_down                                0x0800346b   Thumb Code    50  motorcontrol.o(.text)
+    queue_init                               0x080034b9   Thumb Code    14  queue.o(.text)
+    queue_get                                0x080034c7   Thumb Code    32  queue.o(.text)
+    queue_put                                0x080034e7   Thumb Code    30  queue.o(.text)
+    queue_empty                              0x08003505   Thumb Code    20  queue.o(.text)
+    queue_full                               0x08003519   Thumb Code    32  queue.o(.text)
+    usart1_config                            0x08003539   Thumb Code   160  bsp_usart1.o(.text)
+    USART1_IRQHandler                        0x080035d9   Thumb Code    84  bsp_usart1.o(.text)
+    USART1_SendChar                          0x0800362d   Thumb Code    28  bsp_usart1.o(.text)
+    Change_Baudrate                          0x08003649   Thumb Code    40  bsp_usart1.o(.text)
+    fputc                                    0x08003671   Thumb Code    32  bsp_usart1.o(.text)
+    fgetc                                    0x08003691   Thumb Code    26  bsp_usart1.o(.text)
+    __aeabi_memcpy4                          0x080036bd   Thumb Code     0  rt_memcpy_w.o(.text)
+    __aeabi_memcpy8                          0x080036bd   Thumb Code     0  rt_memcpy_w.o(.text)
+    __rt_memcpy_w                            0x080036bd   Thumb Code   100  rt_memcpy_w.o(.text)
+    _memcpy_lastbytes_aligned                0x08003705   Thumb Code     0  rt_memcpy_w.o(.text)
+    __aeabi_memclr4                          0x08003721   Thumb Code     0  rt_memclr_w.o(.text)
+    __aeabi_memclr8                          0x08003721   Thumb Code     0  rt_memclr_w.o(.text)
+    __rt_memclr_w                            0x08003721   Thumb Code    78  rt_memclr_w.o(.text)
+    _memset_w                                0x08003725   Thumb Code     0  rt_memclr_w.o(.text)
+    __use_two_region_memory                  0x0800376f   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x08003771   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x08003773   Thumb Code     2  heapauxi.o(.text)
+    __user_setup_stackheap                   0x08003775   Thumb Code    74  sys_stackheap_outer.o(.text)
+    exit                                     0x080037bf   Thumb Code    12  exit.o(.text)
+    __user_libspace                          0x080037cd   Thumb Code     8  libspace.o(.text)
+    __user_perproc_libspace                  0x080037cd   Thumb Code     0  libspace.o(.text)
+    __user_perthread_libspace                0x080037cd   Thumb Code     0  libspace.o(.text)
+    _sys_exit                                0x080037d5   Thumb Code     8  sys_exit.o(.text)
+    __I$use$semihosting                      0x080037e1   Thumb Code     0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x080037e1   Thumb Code     2  use_no_semi.o(.text)
+    __semihosting_library_function           0x080037e3   Thumb Code     0  indicate_semi.o(.text)
+    __aeabi_fadd                             0x080037e5   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    _fadd                                    0x080037e5   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
+    __fpl_fnaninf                            0x080038a9   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    __fpl_fretinf                            0x08003935   Thumb Code    10  fretinf.o(x$fpl$fretinf)
+    __aeabi_fsub                             0x08003941   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    _fsub                                    0x08003941   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
+    __I$use$fp                               0x08003a2a   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x08003a2c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08003a4c   Number         0  anon$$obj.o(Region$$Table)
     x                                        0x20000004   Data           4  main.o(.data)
     y                                        0x20000008   Data           4  main.o(.data)
     w                                        0x2000000c   Data           4  main.o(.data)
@@ -833,9 +833,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00003aa4, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00003acc, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00003a24, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00003a4c, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -900,28 +900,28 @@ Memory Map of the image
     0x08002934   0x0000044e   Code   RO          220    .text               stm32f10x_adc.o
     0x08002d82   0x00000002   PAD
     0x08002d84   0x0000042c   Code   RO          232    .text               bsp.o
-    0x080031b0   0x000002e0   Code   RO          253    .text               motorcontrol.o
-    0x08003490   0x00000080   Code   RO          272    .text               queue.o
-    0x08003510   0x00000184   Code   RO          284    .text               bsp_usart1.o
-    0x08003694   0x00000064   Code   RO          308    .text               c_w.l(rt_memcpy_w.o)
-    0x080036f8   0x0000004e   Code   RO          310    .text               c_w.l(rt_memclr_w.o)
-    0x08003746   0x00000006   Code   RO          312    .text               c_w.l(heapauxi.o)
-    0x0800374c   0x0000004a   Code   RO          343    .text               c_w.l(sys_stackheap_outer.o)
-    0x08003796   0x0000000c   Code   RO          345    .text               c_w.l(exit.o)
-    0x080037a2   0x00000002   PAD
-    0x080037a4   0x00000008   Code   RO          353    .text               c_w.l(libspace.o)
-    0x080037ac   0x0000000c   Code   RO          414    .text               c_w.l(sys_exit.o)
-    0x080037b8   0x00000002   Code   RO          425    .text               c_w.l(use_no_semi.o)
-    0x080037ba   0x00000000   Code   RO          427    .text               c_w.l(indicate_semi.o)
-    0x080037ba   0x00000002   PAD
-    0x080037bc   0x000000c4   Code   RO          316    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
-    0x08003880   0x0000008c   Code   RO          323    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
-    0x0800390c   0x0000000a   Code   RO          325    x$fpl$fretinf       fz_ws.l(fretinf.o)
-    0x08003916   0x00000002   PAD
-    0x08003918   0x000000ea   Code   RO          318    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
-    0x08003a02   0x00000000   Code   RO          327    x$fpl$usenofp       fz_ws.l(usenofp.o)
-    0x08003a02   0x00000002   PAD
-    0x08003a04   0x00000020   Data   RO          479    Region$$Table       anon$$obj.o
+    0x080031b0   0x00000308   Code   RO          253    .text               motorcontrol.o
+    0x080034b8   0x00000080   Code   RO          272    .text               queue.o
+    0x08003538   0x00000184   Code   RO          284    .text               bsp_usart1.o
+    0x080036bc   0x00000064   Code   RO          308    .text               c_w.l(rt_memcpy_w.o)
+    0x08003720   0x0000004e   Code   RO          310    .text               c_w.l(rt_memclr_w.o)
+    0x0800376e   0x00000006   Code   RO          312    .text               c_w.l(heapauxi.o)
+    0x08003774   0x0000004a   Code   RO          343    .text               c_w.l(sys_stackheap_outer.o)
+    0x080037be   0x0000000c   Code   RO          345    .text               c_w.l(exit.o)
+    0x080037ca   0x00000002   PAD
+    0x080037cc   0x00000008   Code   RO          353    .text               c_w.l(libspace.o)
+    0x080037d4   0x0000000c   Code   RO          414    .text               c_w.l(sys_exit.o)
+    0x080037e0   0x00000002   Code   RO          425    .text               c_w.l(use_no_semi.o)
+    0x080037e2   0x00000000   Code   RO          427    .text               c_w.l(indicate_semi.o)
+    0x080037e2   0x00000002   PAD
+    0x080037e4   0x000000c4   Code   RO          316    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
+    0x080038a8   0x0000008c   Code   RO          323    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
+    0x08003934   0x0000000a   Code   RO          325    x$fpl$fretinf       fz_ws.l(fretinf.o)
+    0x0800393e   0x00000002   PAD
+    0x08003940   0x000000ea   Code   RO          318    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
+    0x08003a2a   0x00000000   Code   RO          327    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x08003a2a   0x00000002   PAD
+    0x08003a2c   0x00000020   Data   RO          479    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x000007f8, Max: 0x00010000, ABSOLUTE)
@@ -957,7 +957,7 @@ Image component sizes
        176          8          0          6          0       1139   delay.o
       2520         64          0         38        239     266295   main.o
        220         22          0          0          0       1873   misc.o
-       736         28          0         16          0       3422   motorcontrol.o
+       776         28          0         16          0       3438   motorcontrol.o
        128          0          0          0          0       1764   queue.o
         64         26        304          0       1536        888   startup_stm32f10x_hd.o
       1102         26          0          0          0      10909   stm32f10x_adc.o
@@ -969,7 +969,7 @@ Image component sizes
        480         38          0         20          0       1983   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     13512        506        336        128       1812     339820   Object Totals
+     13552        506        336        128       1812     339836   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          4          0          0          0          1          0   (incl. Padding)
 
@@ -1025,15 +1025,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     14548        534        336        128       1912     339208   Grand Totals
-     14548        534        336        128       1912     339208   ELF Image Totals
-     14548        534        336        128          0          0   ROM Totals
+     14588        534        336        128       1912     339224   Grand Totals
+     14588        534        336        128       1912     339224   ELF Image Totals
+     14588        534        336        128          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                14884 (  14.54kB)
+    Total RO  Size (Code + RO Data)                14924 (  14.57kB)
     Total RW  Size (RW Data + ZI Data)              2040 (   1.99kB)
-    Total ROM Size (Code + RO Data + RW Data)      15012 (  14.66kB)
+    Total ROM Size (Code + RO Data + RW Data)      15052 (  14.70kB)
 
 ==============================================================================
 
