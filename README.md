@@ -11,6 +11,11 @@ This is the second version of the basketball arm controller(SLAVE).
 		<li>ff ff 02 00 02 01 04 09	从最高处落下high_down</li>
 		<li>ff ff 02 00 02 01 05 0A	上升到最高high_lift</li>
 		<li>ff ff 02 00 02 01 06 0B	保持处落下down_from_hold</li>
-		
     </ul>
+		<li>注意：</li>
+			<ul>
+				<li>调节TIM8的占空比即可调节铲子速度</li>
+				<li>务必清楚驱动盒侧面目6个拨码开关的作用，目前动盒的拨码设置为 1，2 OFF，3，4 ON 5，6 OFF</li>
+				<li>串口不需要回复数据</li>
+			</ul>
 </p>

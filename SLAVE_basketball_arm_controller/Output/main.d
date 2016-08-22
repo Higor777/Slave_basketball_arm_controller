@@ -14,8 +14,7 @@
 ..\output\main.o: F:\MDK5\ARM\ARMCC\Bin\..\include\string.h
 ..\output\main.o: delay.h
 ..\output\main.o: ..\USEFile\Communication\queue.h
-..\output\main.o: ..\USEFile\Communication\usart2.h
-..\output\main.o: F:\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\output\main.o: ..\USEFile\DCMOTOR\motorcontrol.h
 ..\output\main.o: ..\USEFile\BSP\bsp.h
 ..\output\main.o: .\usart1\bsp_usart1.h
+..\output\main.o: F:\MDK5\ARM\ARMCC\Bin\..\include\stdio.h

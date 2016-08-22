@@ -7,14 +7,14 @@
 
  float destpid_angle4;							//上位机输入步进电机一个目的角速度
  int step;                       //步进数，标志位
-volatile int flag=0,hold=0;
+volatile int flag=0,hold=0;      //flag标志铲子动作是否完成
 /********************一号直流电机*********************************/
 void direction(int a)        //正为正转，负为反转
 {	 
 
     if(a>0)
 	 {
-			ln1(1);             //暂时去掉，蜂鸣器太吵
+			ln1(1);             //使能
 			ln2(1);
 	 }
 	if(a<0)
@@ -29,29 +29,30 @@ void get_ball()              //得球
 {
  hold=0;	
  direction(1);                //上升
- step=8000;
+ step=8100;
  Stepper_motor();
  while(flag==0);
  flag=0;  	//标志位请零
  
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0x02);										
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x02);
-			USART1_SendChar(0x01);
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x05);
+//			USART1_SendChar(0xff);			
+//			USART1_SendChar(0xff);			
+//			USART1_SendChar(0x02);										
+//			USART1_SendChar(0x00);	
+//			USART1_SendChar(0x02);
+//			USART1_SendChar(0x01);
+//			USART1_SendChar(0x00);	
+//			USART1_SendChar(0x05);
 			
  TIM8_PWM_Init(999,9999);             //为什么是持球
  step=100;
- hold=1;                       //保持持球位置，现在开始禁止关闭定时器，直到两秒以后
+ hold=1;                       //保持持球位置，现在开始禁止关闭定时器，直到1秒以后
  Stepper_motor();
- delayms(2000);
+ delayms(600);
  hold=0;
  flag=0;
-	
- TIM8_PWM_Init(999,10);             //下降
+ 
+ 
+ TIM8_PWM_Init(999,10);   
  direction(-1);
  step=7000;                    		 //回来的时候步数小一些，再释放电机
  Stepper_motor();
@@ -127,10 +128,14 @@ void get_from_hold()              	//从持球位置得球并下降
  while(flag==0); 
  flag=0;
  ln1(0);													//释放电机
+ 
 }
 
 void high_lift()              		//上升到最高处
 {
+	 TIM3_Int_Init(999,10);
+	TIM8_PWM_Init(999,10);      
+	hold=0;
  direction(1); 
  step=11000;
  Stepper_motor();
@@ -139,7 +144,12 @@ void high_lift()              		//上升到最高处
 }
 
 void high_down()             	 //从最高处落下
-{
+{  
+	
+ TIM3_Int_Init(999,10);
+ TIM8_PWM_Init(999,10);
+ flag=0;
+ hold=0;
  direction(-1); 
  step=10000;
  Stepper_motor();
