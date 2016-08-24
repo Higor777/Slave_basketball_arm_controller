@@ -2,7 +2,6 @@
 #include "string.h"
 #include "delay.h"	
 #include "queue.h"
-#include "usart2.h"			 //usart and 485
 #include "motorcontrol.h"
 #include "bsp.h"
 #include "bsp_usart1.h"
@@ -23,12 +22,12 @@ void handle_data(uint8_t buf[], int D,int len)
 		{ 
       case 2:      if(buf[0]==1) 
 		            	  {
-                      if(buf[1]==1) {noselect = 0x04 ;break;}       //get_ball
-			           else if(buf[1]==2) {noselect = 0x05 ;break;}       //get_hold_ball
-							   else if(buf[1]==3) {noselect = 0x06 ;break;}       //get_from_hold
-						     else if(buf[1]==4) {noselect = 0x07 ;break;}       //high_down
-							   else if(buf[1]==5) {noselect = 0x08 ;break;}       //high_lift
-						     else if(buf[1]==6) {noselect = 0x09 ;break;}       //down_from_hold从持球处落下
+                       if(buf[1]==1) {noselect = 0x04 ;break;}       //get_ball
+											 else if(buf[1]==2) {noselect = 0x05 ;break;}       //get_hold_ball
+											 else if(buf[1]==3) {noselect = 0x06 ;break;}       //get_from_hold
+											 else if(buf[1]==4) {noselect = 0x07 ;break;}       //high_down
+											 else if(buf[1]==5) {noselect = 0x08 ;break;}       //high_lift
+											 else if(buf[1]==6) {noselect = 0x09 ;break;}       //down_from_hold从持球处落下
 			              }
 			case 3:      if(buf[0]==1) {noselect = 0x0a ;break;}	      //投球   此处CASE要和协议配合
 			
@@ -43,9 +42,8 @@ void handle_data(uint8_t buf[], int D,int len)
 void shot()            //射球
 {
 	GPIO_ResetBits(GPIOB,GPIO_Pin_15);	
-	delayms(1500);
+	delayms(1000);
 	GPIO_SetBits(GPIOB,GPIO_Pin_15);	
-	delayms(1500);
 }
 
 void send(void)
@@ -57,143 +55,81 @@ void send(void)
 	int i;
 	char byte[4];		   					
 	uint16_t checksumsend1=0x16;				 //校验位初始值（返回传感器距离1 | 返回位置2）
-	RS485_TX_MODE   //TX模式
-	if(USART_GetFlagStatus(USART1, USART_FLAG_TC)!=RESET)//发送完成标志位//
-	{	
-      if(noselect==0x04) 							//得球		 
+		switch(noselect)
 		{
-		  get_ball();
-          distance1++;			
-						
-		 noselect=0;
-	 	}
-		
- if(noselect==0x05) 							//得球并保持持球状态
-		{
-		  get_hold_ball();				
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0x02);										
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x02);
-			USART1_SendChar(0x01);
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x05);						
-			noselect=0;
-	 	}
-	if(noselect==0x06) 							//从持球位置得球			 
-		{
-		  get_from_hold();				
-//			USART1_SendChar(0xff);			
-//			USART1_SendChar(0xff);			
-//			USART1_SendChar(0x02);										
-//			USART1_SendChar(0x00);	
-//			USART1_SendChar(0x02);
-//			USART1_SendChar(0x01);
-//			USART1_SendChar(0x00);	
-//			USART1_SendChar(0x05);							
-			noselect=0;
-	 	}
-	if(noselect==0x07) 							//high_down		 
-	{				
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0x02);										
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x02);
-			USART1_SendChar(0x01);
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x05);
+			case 0x00 :
+				break;
+			case 0x04 :            //得球	
+				get_ball();
+				distance1++;						
+				noselect=0;
+			break;
+			case 0x05 :            //得球并保持持球状态
+				get_hold_ball();	
+			  noselect=0;
+			break;
+			case 0x06 :             //从持球位置得球		
+				get_from_hold();	
+			  noselect=0;
+			break;
+			case 0x07 :
+				high_down();		//high_down			
+			  noselect=0;
+			break;
+			case 0x08 :                      //high_lift
+				high_lift();			 
+				noselect=0;
+			break;	
+			case 0x09 :
+				down_from_hold();		
+				noselect=0;
+			break;	
+			case 0x0a :
+				shot();				
+				noselect=0;
+			break;	
+			case 0x0b:						//红外测距			 
+		    //LED2(ON);				
+				USART1_SendChar(0xff);			
+				USART1_SendChar(0xff);			
+				USART1_SendChar(0x04);										
+				USART1_SendChar(0x00);	
+				USART1_SendChar(0x11);
+				USART1_SendChar(0x01);	
+				memcpy( byte,&d1,sizeof(float));
+				 
+				for(i=0;i<4;i++)
+				 {
+					USART1_SendChar(byte[i]);
+					checksumsend1=checksumsend1+byte[i];
+				 }		 
+					memcpy( byte,&d2,sizeof(float));
+				for(i=0;i<4;i++)
+				 {
+					USART1_SendChar(byte[i]);			
+					checksumsend1=checksumsend1+byte[i];
+				 }	
+					memcpy( byte,&d3,sizeof(float));
 				
-		  high_down();
-			noselect=0;
-	 	}
-		if(noselect==0x08) 							//high_lift	 
-		{				
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0x02);										
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x02);
-			USART1_SendChar(0x01);
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x05);     
-			high_lift();			
-			noselect=0;
-	 	}
-		if(noselect==0x09) 							//down_from_hold
-		{
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0x02);										
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x02);
-			USART1_SendChar(0x01);
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x05);     
-			down_from_hold();
-			noselect=0;
-		}			
-
- if(noselect==0x0a) 							//投球			 
-		{
-		  shot();				
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0x03);										
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x02);
-			USART1_SendChar(0x01);
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x06);
-			noselect=0;
-	 	}
-		
-	if(noselect==0x0b) 							//红外测距			 
-		{
-		  //LED2(ON);				
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0xff);			
-			USART1_SendChar(0x04);										
-			USART1_SendChar(0x00);	
-			USART1_SendChar(0x11);
-			USART1_SendChar(0x01);	
-		  memcpy( byte,&d1,sizeof(float));
-		   
-			for(i=0;i<4;i++)
-			 {
-				USART1_SendChar(byte[i]);
-				checksumsend1=checksumsend1+byte[i];
-			 }		 
-		  	memcpy( byte,&d2,sizeof(float));
-			for(i=0;i<4;i++)
-			 {
-			  USART1_SendChar(byte[i]);			
-			  checksumsend1=checksumsend1+byte[i];
-			 }	
-		  	memcpy( byte,&d3,sizeof(float));
+				for(i=0;i<4;i++)
+				 {
+					USART1_SendChar(byte[i]);		
+					checksumsend1=checksumsend1+byte[i];
+				 }
+					memcpy( byte,&d4,sizeof(float));
+				for(i=0;i<4;i++)
+				 {
+					USART1_SendChar(byte[i]);			
+					checksumsend1=checksumsend1+byte[i];
+				 }
+				checksumsend1=checksumsend1%(0xff);
 			
-			for(i=0;i<4;i++)
-			 {
-				USART1_SendChar(byte[i]);		
-				checksumsend1=checksumsend1+byte[i];
+				USART1_SendChar(checksumsend1);						
+				noselect=0;
+	 	  break;
 			 }
-		  	memcpy( byte,&d4,sizeof(float));
-	    for(i=0;i<4;i++)
-			 {
-			  USART1_SendChar(byte[i]);			
-			  checksumsend1=checksumsend1+byte[i];
-			 }
-			checksumsend1=checksumsend1%(0xff);
-		
-			USART1_SendChar(checksumsend1);						
-			noselect=0;
-	 	}
+
 		 
-     }
-    	while(USART_GetFlagStatus(USART2,USART_FLAG_TC)==RESET);				
-	//	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
-		RS485_RX_MODE	 //RX模式			
 }
 
 
@@ -223,9 +159,8 @@ int main()
    delayinit(72);	   
 	usart1_config(115200);  //usart1初始化
 	BSPINIT();
-	RS485_RX_MODE			
+  ln1(0);             //上电释放电机
 	queue_init(&rx_queue);
-
 	//USART1_SendChar(0xff);
 	
 	while(1)	
@@ -331,7 +266,7 @@ int main()
 				if(data == checksum)
 				{				
 					handle_data(buffer,device, data_len);
-  				    send();				
+  				 send();				
 					checksum=0;	
 					rs485Recstate = RECFF1;	 
 				}

@@ -1,4 +1,3 @@
-This is the second version of the npu basketball robot's arm controller.
-
-带有红外
-战舰板，232通信
+调节TIM8的占空比即可调节速度
+目前驱动盒的拨码设置为 1，2 OFF，3，4 ON 5，6 OFF
+串口不需要回复数据

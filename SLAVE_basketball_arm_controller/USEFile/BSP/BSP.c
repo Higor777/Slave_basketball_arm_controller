@@ -1,7 +1,7 @@
 #include "stm32f10x.h"	
 #include "bsp.h"
 #include "delay.h"
-
+#include "motorcontrol.h"
 extern int flag;
 u32 adchehe;
 
@@ -183,7 +183,7 @@ void TIM8_PWM_Init(u16 arr,u16 psc)
 	TIM_CtrlPWMOutputs(TIM8, ENABLE);
 	
 	TIM_OC2PreloadConfig(TIM8, TIM_OCPreload_Enable); 
-	TIM_SetCompare1(TIM8,499);
+	TIM_SetCompare1(TIM8,800);
 }
 
 
@@ -245,7 +245,7 @@ void adc_init(void)
 void BSPINIT(void)
 {
     RCC_Init();		                //所有时钟使能
-	GPIO_init();	 
+	  GPIO_init();	 
     adc_init();
     TIM3_Int_Init(999,10);
 	TIM8_PWM_Init(999,10);       //1200Hz

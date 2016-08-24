@@ -13,3 +13,4 @@
 ..\output\bsp.o: ..\FWlib\inc\misc.h
 ..\output\bsp.o: ..\USEFile\BSP\bsp.h
 ..\output\bsp.o: ..\USER\delay.h
+..\output\bsp.o: ..\USEFile\DCMOTOR\motorcontrol.h
